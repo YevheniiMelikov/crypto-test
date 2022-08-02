@@ -3,7 +3,7 @@ import { useEffect, useMemo } from 'react';
 import Select, { SingleValue } from 'react-select';
 import { useCurrency } from '../../hooks';
 import { useTokenContext } from './components';
-import { extractTokensFromData } from './helpers/extractTokensFromData';
+import { extractTokensFromData, filterByValueOrLabel } from './helpers';
 import { EthereumTokensQueryDefinition } from './queries';
 import { Container } from './styled';
 import { EthereumTokensQuery, EthereumTokensQueryArgs, Token } from './types';
@@ -58,6 +58,7 @@ export const TokenPicker = () => {
         options={tokenOptions}
         isSearchable
         onChange={handleChange}
+        filterOption={filterByValueOrLabel}
         value={
           selectedToken
             ? { label: selectedToken.symbol, value: selectedToken }
